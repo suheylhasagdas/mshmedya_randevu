@@ -1,5 +1,5 @@
 ﻿$(function () {
-    GetAppointmentsList();
+
 });
 
 $('body').on('click', '#_InsertAppointments', function () {
