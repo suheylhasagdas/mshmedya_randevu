@@ -1,0 +1,81 @@
+﻿@using Model.Dtos.StaffServices
+@inject Core.Helpers.Media.Abstract.IRowButtonService _rb
+@inject Core.Helpers.Media.Abstract.IButtonService _rbb
+@model List<StaffServicesDto>
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Personel Hizmet Kayıtları
+                <span class="d-block text-muted pt-2 font-size-sm">Tüm Personel Hizmetleri Listelendi</span>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <!--begin::Button-->
+            @_rbb.PageNew("_InsertStaffServices")
+            <!--end::Button-->
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin: Datatable-->
+        <table id="StaffServicesTable"
+               data-toggle="table"
+               data-locale="tr-TR"
+               data-search="true"
+               class="table-hover">
+            <thead style="text-align:center;">
+                <tr>
+                    <th data-width="90px"><span>İşlemler</span></th>
+                    <th><span>Personel</span></th>
+                    <th><span>Hizmet</span></th>
+                    <th><span>Eklenme Tarihi</span></th>
+                    <th><span>Statü</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+
+                    foreach (var item in Model.Select((value, i) => new { i, value }))
+                    {
+                        <tr data-id="@item.value.Id">
+                            <td>
+                                @_rb.RowUpdate(id: "_UpdateStaffServices")
+                                @if (item.value.IsActive)
+                                    @_rb.RowDelete(id: "_DeleteStaffServices")
+                                    else
+                                        @_rb.RowUndo(id: "_UndoDeleteStaffServices")
+                            </td>
+                            <td><span style="text-align:center;">@item.value.StaffName</span></td>
+                            <td><span style="text-align:center;">@item.value.ServiceName</span></td>
+                            <td><span style="text-align:center;">@item.value.CreateDate.ToString("dd MMM yyyy")</span></td>
+                            <td>
+                                @if (item.value.IsActive)
+                                {
+                                    <span style="text-align:center;"><span class="label font-weight-bold label-lg label-light-success label-inline">Aktif</span></span>
+                                }
+                                else
+                                {
+                                    <span style="text-align:center;"><span class="label font-weight-bold label-lg label-light-danger label-inline">Pasif</span></span>
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--end: Datatable-->
+    </div>
+</div>
+
+<script>
+    var $table = $('#StaffServicesTable')
+
+    $(function () {
+        $table.bootstrapTable();
+
+    })
+</script>
+

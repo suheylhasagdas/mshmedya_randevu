@@ -1,0 +1,240 @@
+﻿@model Model.Dtos.Appointments.CalendarDto
+@{
+    ViewBag.Title = "MSH Medya Yazılım & Web Tasarım";
+
+    ViewBag.PageTitle = "Randevu Takvimi";
+    ViewBag.PageDesc = "Randevu takvimini görüntüle, yeni randevu oluştur";
+}
+
+<style>
+    .fc-button {
+        cursor: pointer !important;
+    }
+</style>
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <div class="card card-custom">
+            <div class="card-body">
+                <div id="kt_calendar" class="fc fc-ltr fc-unthemed" style="">
+                    <div class="fc-toolbar fc-header-toolbar">
+                        <div class="fc-left">
+                            <div class="fc-button-group">
+                                <a style="line-height:30px;" id="prevDay" class="fc-prev-button fc-button fc-button-primary" aria-label="Bir gün geri"><span class="fc-icon fc-icon-chevron-left"></span></a>
+                                <a style="line-height: 30px; width: 300px;" class="fc-next-button fc-button fc-button-primary">
+                                    <h7 id="calendarDay"></h7>
+                                </a>
+                                <a style="line-height:30px;" id="nextDay" class="fc-next-button fc-button fc-button-primary" aria-label="Bir gün ileri"><span class="fc-icon fc-icon-chevron-right"></span></a>
+                            </div>
+                            <a style="line-height:30px;" id="today" class="fc-today-button fc-button fc-button-primary">Bugün</a>
+                        </div>
+                        <div class="fc-center">
+
+                        </div>
+                        <div class="fc-right">
+                            <a href="javascript:;" class="btn btn-light-primary font-weight-bold" id="_InsertAppointments">
+                                <i class="ki ki-plus icon-md mr-2"></i>Yeni Randevu
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="mshCalendar">
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+<!--end::Content-->
+<script src="~/js/Pages/Calendar.js"></script>
+<script>
+    let currentDate = new Date();
+
+    $(function () {
+        updateCalendarDate();
+    });
+
+    function formatTurkceTarih(date) {
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+        return new Intl.DateTimeFormat('tr-TR', options).format(date);
+    }
+
+    function updateCalendarDate() {
+
+        $('#calendarDay').text(formatTurkceTarih(currentDate));
+        GetMshCalendar();
+    }
+
+    $('#prevDay').on('click', function () {
+        currentDate.setDate(currentDate.getDate() - 1);
+        updateCalendarDate();
+    });
+
+    $('#nextDay').on('click', function () {
+        debugger;
+        currentDate.setDate(currentDate.getDate() + 1);
+        updateCalendarDate();
+    });
+
+    $('#today').on('click', function () {
+        debugger;
+        currentDate = new Date();
+        updateCalendarDate();
+    });
+
+    $('body').on('click', '#DeleteAppointments', function () {
+
+
+    });
+
+    function GetMshCalendar() {
+
+        var model =
+        {
+            CurrentDate: currentDate
+        }
+        debugger;
+        var fncSuccess = function (result) {
+            console.log(result);
+
+            let staffsHtml = '';
+            $.each(result.staffs, function (index, value) {
+                staffsHtml += '<th class="fc-day-header fc-widget-header fc-sun fc-past" data-staffid="' + value.id + '"><span  class="d-inline-block me-2" style="width:30px; height:10px; border-radius:12px; background:' + value.colorCode + '"></span><span>&nbsp;&nbsp;' + value.fullName + '<span></th>';
+            });
+            let staffsHtml2 = '';
+            $.each(result.staffs, function (index, value) {
+                staffsHtml2 += '<th class="fc-day fc-widget-content fc-sun fc-past staff-col" data-staffid="' + value.id + '"></th>';
+            });
+            let sessionsHtml = '';
+            $.each(result.sessions, function (index, value) {
+                sessionsHtml += '<tr class="session-row" data-sessionid="' + value.id + '" style="height:90px;">' +
+                    '<td class="fc-axis fc-time fc-widget-content text-center" style="width: 110px;"><span>' + value.startEndTime + '</span></td>' +
+                    '<td class="fc-widget-content"></td>' +
+                    '</tr>';
+            });
+
+            let htmlResult = '<div class="fc-view fc-timeDayWeek-view fc-timeGrid-view">' +
+                '                            <table class="">' +
+                '                                <thead class="fc-head" style="position: sticky; top: 117px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); background:white; z-index:4;">' +
+                '                                    <tr>' +
+                '                                        <td class="fc-head-container fc-widget-header">' +
+                '                                            <div class="fc-row fc-widget-header">' +
+                '                                                <table class="">' +
+                '                                                    <thead>' +
+                '                                                        <tr>' +
+                '                                                            <th class="fc-axis fc-widget-header text-center" style="width: 110px;"></th>' +
+                staffsHtml +
+                '                                                        </tr>' +
+                '                                                    </thead>' +
+                '                                                </table>' +
+                '                                            </div>' +
+                '                                        </td>' +
+                '                                    </tr>' +
+                '                                </thead>' +
+                '                                <tbody class="fc-body">' +
+                '                                    <tr>' +
+                '                                        <td class="fc-widget-content">' +
+                '                                            <hr class="fc-divider fc-widget-header">' +
+                '                                            <div class="fc-scroller fc-time-grid-container">' +
+                '                                                <div class="fc-time-grid" style="position:relative;">' +
+                '                                                   <div id="appointmentBoxes" style="position:relative; z-index:3; left:0px; top:0px; height:0px; width:0px;"></div>' +
+                '                                                   <div id="appointmentButtons" style="position:relative; z-index:2; left:0px; top:0px; height:0px; width:0px;"></div>' +
+                '                                                    <div class="fc-bg">' +
+                '                                                        <table class="">' +
+                '                                                            <tbody>' +
+                '                                                                <tr>' +
+                '                                                                    <td class="fc-axis fc-widget-content" style="width: 110px;"></td>' +
+                staffsHtml2 +
+                '                                                                </tr>' +
+                '                                                            </tbody>' +
+                '                                                        </table>' +
+                '                                                    </div>' +
+                '                                                    <div class="fc-slats" style="z-index:1 !important;">' +
+                '                                                        <table class="">' +
+                '                                                            <tbody>' +
+                sessionsHtml +
+                '                                                            </tbody>' +
+                '                                                        </table>' +
+                '                                                    </div>' +
+                '                                                </div>' +
+                '                                            </div>' +
+                '                                        </td>' +
+                '                                    </tr>' +
+                '                                </tbody>' +
+                '                            </table>' +
+                '                        </div>';
+
+            $('#mshCalendar').html(htmlResult);
+
+
+            CreateAppointmentBox(result.appointments);
+            CreateAddAppointmentButtons(result);
+        };
+        var fncError = function (jqXHR, textStatus, errorThrown) {
+            ParseErrorResult(jqXHR, textStatus, errorThrown);
+        };
+
+        msh.AjaxPost(msh.GetUrl("GetCalendar", "Appointments"), JSON.stringify(model), fncSuccess, fncError);
+
+    }
+
+    function CreateAppointmentBox(appointments) {
+        let appointmentsHtml = '';
+        $.each(appointments, function (index, value) {
+            appointmentsHtml += '<a class="fc-time-grid-event fc-event fc-start fc-end" style="z-index:3; position: absolute; top: ' + ($('.session-row[data-sessionid="' + value.sessionId + '"]').position().top + 1.5) + 'px; left: ' + ($('.staff-col[data-staffid="' + value.staffId + '"]').position().left + 5) + 'px; width:' + ($('.fc-day-header[data-staffid="' + value.staffId + '"]').width()) + 'px">' +
+                '                                       <div style="padding: .55rem .55rem 0 2rem;"><span  class="d-inline-block me-2" style="width:10px; height:10px; border-radius:12px; background:' + value.staff.colorCode + '"></span><span style=" color: black; font-size: 14px;">&nbsp;&nbsp;' + value.staff.fullName + '</span></div>' +
+                '                                <div style="padding: 0 .55rem .55rem 2rem;">' +
+                '                                   <div class="fc-title">' + value.customerName + ' - ' + value.serviceName +
+                '                                       <div class="fc-description">' + value.startTime + ' - ' + value.endTime + '<br>' + value.appointmentDate + '</div>' +
+                '                                   </div>' +
+                '                               </div>' +
+                '               </a>';
+        });
+
+        $('#appointmentBoxes').html(appointmentsHtml);
+    }
+
+    function CreateAddAppointmentButtons(result) {
+        let appointmentButtonsHtml = '';
+        $.each(result.staffs, function (index, staff) {
+            $.each(result.staffSessions.filter(x => x.staffId === staff.id), function (index, session) {
+                appointmentButtonsHtml += '<a class="btn btn-light bg-white" style="width: 36px; border:0px !important; cursor: pointer; z-index:2; position: absolute; top: ' + ($('.session-row[data-sessionid="' + session.sessionId + '"]').position()?.top + 1.5) + 'px; left: ' + ($('.staff-col[data-staffid="' + staff.id + '"]').position().left + 5) + 'px;" onclick="CreateAppointment(' + staff.id + ',' + session.sessionId + ')"> <i class="ki ki-plus icon-md mr-2" style="font-size:11px !important;"></i></a>';
+
+            });
+        });
+        $('#appointmentButtons').html(appointmentButtonsHtml);
+    }
+
+    function CreateAppointment(staffId, sessionId) {
+        debugger;
+        var model = {
+            AppointmentDate: currentDate,
+            StaffId: staffId,
+            SessionId: sessionId
+        };
+        var fncSuccess = function (result) {
+            if (typeof result == 'object') {
+                SwalFireError(result.responseText);
+            }
+            else {
+                OpenModalModalSizeLg(result);
+            }
+        };
+        var fncError = function (jqXHR, textStatus, errorThrown) {
+            ParseErrorResult(jqXHR, textStatus, errorThrown);
+        };
+
+        msh.AjaxPost(msh.GetUrl("_InsertCalendarAppointments", "Appointments"), JSON.stringify(model), fncSuccess, fncError);
+    }
+</script>

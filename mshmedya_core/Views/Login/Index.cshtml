@@ -1,0 +1,270 @@
+﻿@{ 
+    Layout = null;
+}
+@using Model.Request.Login
+@model LoginRequest
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>MSH Medya Yönetim Paneli v2</title>
+
+    <link rel="shortcut icon" type="image/gif/png" href="/image/favicon.png">
+
+    <meta name="description" content="Login page example" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="~/css/login.css?v=7.2.8" rel="stylesheet" type="text/css" />
+    <link href="~/font/Montserrat/Montserrat-Font.css" rel="stylesheet" />
+    <link href="~/css/fullcalendar.bundle.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/plugins.bundle.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/prismjs.bundle.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.bundle.css?v=7.2.7" rel="stylesheet" type="text/css" />
+
+    <link href="~/css/headerlight.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/menulight.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/brandlight.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/asidelight.css?v=7.2.7" rel="stylesheet" type="text/css" />
+
+    <!--begin::Page Custom Styles(used by this page)-->
+    <link href="~/mshtenic/css/pages/login/login-45883.css?v=7.2.9" rel="stylesheet" type="text/css" />
+    <!--end::Page Custom Styles-->
+    <!--begin::Global Theme Styles(used by all pages)-->
+    <link href="~/mshtenic/plugins/global/plugins.bundle5883.css?v=7.2.9" rel="stylesheet" type="text/css" />
+    <link href="~/mshtenic/plugins/custom/prismjs/prismjs.bundle5883.css?v=7.2.9" rel="stylesheet" type="text/css" />
+    <link href="~/mshtenic/css/style.bundle5883.css?v=7.2.9" rel="stylesheet" type="text/css" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+    <div class="modal fade" id="ModalSizeSm" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeSm" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content modalSizeSm-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalSizeMd" tabindex="-1" role="dialog" aria-labelledby="exampleModalSize" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modalSizeMd-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalSizeLg" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeLg" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modalSizeLg-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalSizeXl" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeSm" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content modalSizeXl-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--begin::Main-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Login-->
+        <div class="login login-4 wizard d-flex flex-column flex-lg-row flex-column-fluid">
+            <!--begin::Content-->
+            <div class="login-container order-2 order-lg-1 d-flex flex-center flex-row-fluid px-7 pt-lg-0 pb-lg-0 pt-4 pb-6 bg-white">
+                <!--begin::Wrapper-->
+                <div class="login-content d-flex flex-column pt-lg-0 pt-12">
+                    <!--begin::Logo-->
+                    <a href="#" class="login-logo pb-xl-20 pb-15">
+                        <img src="/image/logo-dark.png" class="max-h-70px" alt="MSH Medya Yönetim Paneli" />
+                    </a>
+                    <!--end::Logo-->
+                    <!--begin::Signin-->
+                    <div class="login-form">
+                        <!--begin::Form-->
+                        <form class="form" >
+                            <!--begin::Title-->
+                            <div class="pb-5 pb-lg-15">
+                                <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Giriş Yap</h3>
+                                <div class="text-muted font-weight-bold font-size-h4">
+                                    MSH Medya Yönetim Paneli
+                                    @*<a href="signup.html" class="text-primary font-weight-bolder">Create Account</a>*@
+                                </div>
+                            </div>
+                            <!--begin::Title-->
+                            <!--begin::Form group-->
+                            <div class="form-group">
+                                <label class="font-size-h6 font-weight-bolder text-dark">Kullanıcı Adı</label>
+                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="text" name="LoginName" id="LoginName" autocomplete="off" />
+                            </div>
+                            <!--end::Form group-->
+                            <!--begin::Form group-->
+                            <div class="form-group">
+                                <div class="d-flex justify-content-between mt-n5">
+                                    <label class="font-size-h6 font-weight-bolder text-dark pt-5">Şifre</label>
+                                    <a href="https://mshmedya.com/Contact#RequestForm" target="_blank" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5">Şifrenizi mi unuttunuz ?</a>
+                                </div>
+                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="password" name="Password" id="Password" autocomplete="off" />
+                            </div>
+                            <!--end::Form group-->
+                            <!--begin::Action-->
+                            <div class="pb-lg-0 pb-5">
+                                <button type="button" id="LoginSubmit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Giriş Yap</button>
+                                
+                            </div>
+                            <!--end::Action-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Signin-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            <!--begin::Content-->
+            <!--begin::Aside-->
+            <div class="login-aside order-1 order-lg-2 bgi-no-repeat bgi-position-x-right">
+                <div class="login-conteiner bgi-no-repeat bgi-position-x-right bgi-position-y-bottom" style="background-image: url('/image/logiback.svg');">
+                    <!--begin::Aside title-->
+                    <h3 class="pt-lg-40 pl-lg-20 pb-lg-0 pl-10 py-20 m-0 d-flex justify-content-lg-start font-weight-boldest display5 display1-lg text-white">
+                        Ayrıcalıkları
+                        <br />Bizimle
+                        <br />Keşfet
+                    </h3>
+                    <!--end::Aside title-->
+                </div>
+            </div>
+            <!--end::Aside-->
+        </div>
+        <!--end::Login-->
+    </div>
+    <!--end::Main-->
+
+    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1400 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#3699FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#E4E6EF", "dark": "#181C32" }, "light": { "white": "#ffffff", "primary": "#E1F0FF", "secondary": "#EBEDF3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#3F4254", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#EBEDF3", "gray-300": "#E4E6EF", "gray-400": "#D1D3E0", "gray-500": "#B5B5C3", "gray-600": "#7E8299", "gray-700": "#5E6278", "gray-800": "#3F4254", "gray-900": "#181C32" } }, "font-family": "Poppins" };</script>
+
+    <script src="~/js/plugins.bundle.js?v=7.2.7"></script>
+    <script src="~/js/prismjs.bundle.js?v=7.2.7"></script>
+    <script src="~/js/scripts.bundle.js?v=7.2.7"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/Msh.js"></script>
+    <script src="~/js/login.js?v=7.2.7"></script>
+
+</body>
+
+</html>
+
+
+
+<script>
+    function CheckLoginName() {
+        var val = $('#LoginName').val();
+        if (!val) {
+
+            SwalToastError('Önce kullanıcı adı giriniz.');
+
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#Password').keydown(function (event) {
+            if (event.which == 13) {
+                $("#LoginSubmit").trigger("click");
+            }
+        });
+
+    });
+
+    $('body').on('click', '#Login_forgot', function () {
+
+        var result = CheckLoginName();
+        if (!result)
+            return false;
+
+
+        $('#Login_forgot').hide();
+        $('#password-box').hide();
+        $('#LoginSubmit').hide();
+        $('#LoginDescription').hide();
+        $('#Login_back').show();
+        $('#ForgotSubmit').show();
+        $('#ForgotDescription').show();
+    });
+
+    $('body').on('click', '#Login_back', function () {
+        $('#Login_forgot').show();
+        $('#password-box').show();
+        $('#LoginSubmit').show();
+        $('#LoginDescription').show();
+        $('#Login_back').hide();
+        $('#ForgotSubmit').hide();
+        $('#ForgotDescription').hide();
+    });
+    $('body').on('click', '#LoginSubmit', function () {
+
+        var form = $(this).closest('form');
+
+        var formArray = [];
+        formArray.push(form);
+
+        if (!ValidateFormWithNoMessage(formArray)) {
+            SwalFireError('Bazı hatalar var', 'Tamam, anladım');
+
+            return false;
+        }
+
+        $.ajax({
+            async: true,
+            cache: false,
+            type: 'POST',
+            url: '/Login/Login',
+            data: form.serialize(),
+            dataType: 'json',
+            complete: function () {
+                dismisLoadingDiv();
+            },
+            beforeSend: function () {
+                showLoadingDiv();
+            },
+            success: function (result) {
+                if (result.success) {
+                    SwalToastSuccess(result.responseText);
+
+                    var url = '/Home';
+
+                    var newURL = window.location.origin + url;
+                    window.location = newURL;
+                }
+                else
+                    SwalToastError(result.responseText);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                ParseErrorResult(jqXHR, textStatus, errorThrown);
+            }
+        })
+
+        return false;
+
+    });
+
+
+</script>

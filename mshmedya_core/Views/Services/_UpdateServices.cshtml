@@ -1,0 +1,37 @@
+﻿@inject Core.Helpers.Media.Abstract.IButtonService _rbb
+@model Model.Dtos.Services.ServicesDto
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel"> Hizmet Güncelle</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <form id="UpdateServicesForm">
+        <div class="col-12 mb-3">
+            <label>Ad</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control form-control-sm ", type = "text" })
+        </div>
+        <div class="col-12 mb-3">
+            <label>Açıklama</label>
+            @Html.TextBoxFor(x => x.Description, new { @class = "form-control form-control-sm ", type = "text" })
+        </div>
+        <div class="col-12 mb-3">
+            <label>Süre (DK)</label>
+            @Html.TextBoxFor(x => x.Duration, new { @class = "form-control form-control-sm ", type = "text" })
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    @_rbb.PageCreate(buttonId: "UpdateServices")
+</div>
+
+
+<script>
+
+    $(function () {
+        KTSummernoteDemo.init();
+    });
+
+</script>

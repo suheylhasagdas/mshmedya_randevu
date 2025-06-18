@@ -1,0 +1,158 @@
+﻿@inject Core.Helpers.Media.Abstract.IButtonService _rbb
+@model Model.Dtos.Appointments.AppointmentsDto
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Yeni Randevu Oluştur</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <form id="InsertAppointmentsForm">
+        <div class="col-12 mb-3">
+            <label>Müşteri</label>
+            <div>
+                @Html.DropDownListFor(x => x.CustomerId, new SelectList(Model.CustomersList, "Id", "FullNamePhone"), new { @class = "form-control form-control-sm" })
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <label>Personel</label>
+            <div>
+                @Html.DropDownListFor(x => x.StaffId, new SelectList(Model.StaffList, "Id", "FullName"), new { @class = "form-control form-control-sm" })
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <label>Hizmet</label>
+            <div>
+                @Html.DropDownListFor(x => x.ServiceId, new SelectList(Model.ServicesList, "Id", "Name"), new { @class = "form-control form-control-sm" })
+            </div>
+        </div>
+        <div class="col-12 mb-3 mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="AppointmentDate"></div>
+                </div>
+                <div class="col-md-6" id="staffSessions">
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    @_rbb.PageCreate(buttonId: "InsertAppointments", buttonText: "Randevuyu Oluştur")
+</div>
+
+<script>
+    var picker;
+    var selectedSessionId = 0;
+    var selectedDate = null;
+    $(function () {
+        $('#StaffId').val("").trigger("change");
+        $('#CustomerId').val("").trigger("change");
+
+        KTSummernoteDemo.init();
+        $("#StaffId, #ServiceId, #SessionId, #CustomerId").select2({
+            placeholder: "Seçiniz",
+            allowClear: true
+        });
+
+        picker = flatpickr("#AppointmentDate", {
+            locale: "tr",
+            language: "tr",
+            inline: true,
+            dateFormat: "d.m.Y",
+            defaultDate: "today",
+            onChange: function (selectedDates, dateStr, instance) {
+
+                var AppointmentDate = selectedDate = dateStr;
+
+                var StaffId = $('#StaffId').val();
+                if (msh.Inue(StaffId)) {
+                    msh.ToastWarning("Personel Alanı Dolu Olmalıdır!");
+                    msh.focusTheEmptyInput($('#StaffId'));
+                    return false;
+                }
+
+                if (!msh.Inue(AppointmentDate)) {
+
+                    var model =
+                    {
+                        StaffId: parseInt(StaffId),
+                        AppointmentDate: AppointmentDate
+                    }
+
+                    var fncSuccess = function (result) {
+                        var data = result.availableSessions;
+                        var sessionHtml = '';
+                        debugger;
+                        data.forEach(function (item) {
+                            var cssClass = 'btn-outline-danger disabled cursor-disabled';
+                            var sessionId = '';
+                            if (item.isAvailable) {
+                                cssClass = 'btn-outline-primary';
+                                sessionId = item.sessionId;
+                            }
+                            sessionHtml += '<a class="btn btn-sessions float-left mr-2 ' + cssClass + '" onclick="SessionClick(this)" data-sessionid="' + sessionId + '">'
+                                + item.sessions.startEndTime
+                                + '</a>';
+
+                        });
+                        $('#staffSessions').html(sessionHtml);
+
+                    };
+                    var fncError = function (jqXHR, textStatus, errorThrown) {
+                        ParseErrorResult(jqXHR, textStatus, errorThrown);
+                    };
+
+                    msh.AjaxPost(msh.GetUrl("GetStaffAvailableSessions", "Appointments"), JSON.stringify(model), fncSuccess, fncError);
+
+                    return false;
+                }
+            }
+        });
+
+    });
+
+    $('#StaffId').change(function () {
+        $('#ServiceId').empty().trigger("change");
+        selectedSessionId = 0;
+        selectedDate = null;
+        var StaffId = $('#StaffId').val();
+        $('#staffSessions').html('');
+        if (!msh.Inue(StaffId)) {
+            var model =
+            {
+                Id: parseInt(StaffId)
+            }
+
+            var fncSuccess = function (result) {
+                var $select = $('#ServiceId');
+                $select.empty();
+
+                result.forEach(function (item) {
+                    $select.append(new Option(item.serviceName + " (" + item.serviceDuration + " Dk)", item.serviceId));
+                });
+                $('#ServiceId').val("").trigger("change");
+                //picker.setDate("2025-06-12", true);
+            };
+            var fncError = function (jqXHR, textStatus, errorThrown) {
+                ParseErrorResult(jqXHR, textStatus, errorThrown);
+            };
+
+            msh.AjaxPost(msh.GetUrl("GetStaffServicesByStaffId", "StaffServices"), JSON.stringify(model), fncSuccess, fncError);
+
+            return false;
+        }
+    });
+
+    function SessionClick(el) {
+        var element = $(el);
+        $('.btn-sessions').removeClass("active");
+        element.addClass("active");
+        selectedSessionId = element.data("sessionid");
+    }
+</script>

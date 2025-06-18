@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>MSH Medya Web Sayfası Yönetim Paneli v2</title>
+    <meta name="description" content="Content width content" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+
+    <link href="~/css/fullcalendar.bundle.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/plugins.bundle.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/jstree.bundle.css?v=7.2.8" rel="stylesheet" type="text/css" />
+    <link href="~/css/prismjs.bundle.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.bundle.css?v=7.2.7" rel="stylesheet" type="text/css" />
+    <link href="~/font/Montserrat/Montserrat-Font.css" rel="stylesheet" />
+    @*<link href="~/css/headerlight.css?v=7.2.7" rel="stylesheet" type="text/css" />
+        <link href="~/css/menulight.css?v=7.2.7" rel="stylesheet" type="text/css" />
+        <link href="~/css/brandlight.css?v=7.2.7" rel="stylesheet" type="text/css" />
+        <link href="~/css/asidelight.css?v=7.2.7" rel="stylesheet" type="text/css" />*@
+
+    <link href="~/mshtenic/css/themes/layout/header/base/light5883.css?v=7.2.9" rel="stylesheet" type="text/css" />
+    <link href="~/mshtenic/css/themes/layout/header/menu/light5883.css?v=7.2.9" rel="stylesheet" type="text/css" />
+    <link href="~/mshtenic/css/themes/layout/brand/dark5883.css?v=7.2.9" rel="stylesheet" type="text/css" />
+    <link href="~/mshtenic/css/themes/layout/aside/dark5883.css?v=7.2.9" rel="stylesheet" type="text/css" />
+    <link href="~/css/msh.css" rel="stylesheet" />
+    <link href="~/css/msh-datepicker/msh-datepicker.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" type="image/gif/png" href="/image/favicon.png">
+
+
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/plugins.bundle.js?v=7.2.7"></script>
+    <script src="~/js/prismjs.bundle.js?v=7.2.7"></script>
+    <script src="~/js/scripts.bundle.js?v=7.2.7"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/js/fullcalendar.bundle.js?v=7.2.7"></script>
+    <script src="~/js/Select2_tr.js"></script>
+    <script src="~/js/widgets.js?v=7.2.7"></script>
+    <script src="~/js/jquery.maskedinput.js"></script>
+    <script src="~/js/Msh.js"></script>
+    <script src="~/js/MshFramework.js"></script>
+    <script src="~/js/msh-datepicker/msh-datepicker.js"></script>
+    <script src="~/js/msh-datepicker/msh-datepicker-lang-tr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @*<script src="/mshtenic/js/pages/crud/ktdatatable/base/html-table5883.js?v=7.2.9"></script> datatable*@
+
+    <script src="~/mshtenic/js/pages/crud/forms/editors/summernote5883.js?v=7.2.9"></script>
+
+    <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js"></script>
+</head>
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+    <div class="modal fade" id="ModalSizeSm" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeSm" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content modalSizeSm-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalSizeMd" tabindex="-1" role="dialog" aria-labelledby="exampleModalSize" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modalSizeMd-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalSizeLg" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeLg" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modalSizeLg-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalSizeXl" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeSm" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content modalSizeXl-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="PopupModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title popupModal-modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="popupClose close" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body popupModal-modal-body">
+
+                </div>
+                <div class="modal-footer popupModal-modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--begin::Main-->
+    <!--begin::Header Mobile-->
+    <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
+        <!--begin::Logo-->
+        <a href="/Home">
+            <img alt="Logo" src="/image/logo.png" />
+        </a>
+        <!--end::Logo-->
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <!--begin::Aside Mobile Toggle-->
+            <button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
+                <span></span>
+            </button>
+            <!--end::Aside Mobile Toggle-->
+            <!--begin::Header Menu Mobile Toggle-->
+            <button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
+                <span></span>
+            </button>
+            <!--end::Header Menu Mobile Toggle-->
+            <!--begin::Topbar Mobile Toggle-->
+            <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+                <span class="svg-icon svg-icon-xl">
+                    <!--begin::Svg Icon | path:/metronic/media/svg/icons/General/User.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24" />
+                            <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                            <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                        </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                </span>
+            </button>
+            <!--end::Topbar Mobile Toggle-->
+        </div>
+        <!--end::Toolbar-->
+    </div>
+    <!--end::Header Mobile-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="d-flex flex-row flex-column-fluid page">
+            @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_aside.cshtml")
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                <!--begin::Header-->
+                @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_header.cshtml")
+                <!--end::Header-->
+                <!--begin::Content-->
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                    <!--begin::Subheader-->
+                    <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
+                        <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                            <!--begin::Info-->
+                            <div class="d-flex align-items-center flex-wrap mr-1">
+                                <!--begin::Page Heading-->
+                                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                                    <!--begin::Page Title-->
+                                    <h5 class="text-dark font-weight-bold my-1 mr-5">@ViewBag.PageTitle</h5>
+                                    <!--end::Page Title-->
+                                    <!--begin::Breadcrumb-->
+                                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                                        <li class="breadcrumb-item text-muted">
+                                            <a class="text-muted">@ViewBag.PageDesc</a>
+                                        </li>
+                                    </ul>
+                                    <!--end::Breadcrumb-->
+                                </div>
+                                <!--end::Page Heading-->
+                            </div>
+                            <!--end::Info-->
+                            <!--begin::Toolbar-->
+                            <div class="d-flex align-items-center">
+                                <!--begin::Dropdown-->
+                                <!--<div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions" data-placement="left">
+                                    <a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="svg-icon svg-icon-success svg-icon-2x">-->
+                                            <!--begin::Svg Icon | path:/metronic/media/svg/icons/Files/File-plus.svg-->
+                                            <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                    <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                    <path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z" fill="#000000" />
+                                                </g>
+                                            </svg>-->
+                                            <!--end::Svg Icon-->
+                                        <!--</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right p-0 m-0">-->
+                                        <!--begin::Navigation-->
+                                        <!--<ul class="navi navi-hover">
+                                            <li class="navi-header font-weight-bold py-4">
+                                                <span class="font-size-lg">Choose Label:</span>
+                                                <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>
+                                            </li>
+                                            <li class="navi-separator mb-3 opacity-70"></li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text">
+                                                        <span class="label label-xl label-inline label-light-success">Customer</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text">
+                                                        <span class="label label-xl label-inline label-light-danger">Partner</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text">
+                                                        <span class="label label-xl label-inline label-light-warning">Suplier</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text">
+                                                        <span class="label label-xl label-inline label-light-primary">Member</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-text">
+                                                        <span class="label label-xl label-inline label-light-dark">Staff</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="navi-separator mt-3 opacity-70"></li>
+                                            <li class="navi-footer py-4">
+                                                <a class="btn btn-clean font-weight-bold btn-sm" href="#">
+                                                    <i class="ki ki-plus icon-sm"></i>Add new
+                                                </a>
+                                            </li>
+                                        </ul>-->
+                                        <!--end::Navigation-->
+                                    <!--</div>
+                                </div>-->
+                                <!--end::Dropdown-->
+                            </div>
+                            <!--end::Toolbar-->
+                        </div>
+                    </div>
+                    <!--end::Subheader-->
+                    <!--begin::Entry-->
+                    <div class="d-flex flex-column-fluid">
+                        <!--begin::Container-->
+                        <div class="container">
+                            @RenderBody()
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Entry-->
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Main-->
+    @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_user_panel.cshtml")
+
+
+    @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_scrolltop.cshtml")
+
+    <div class="modal fade" id="CRUDModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title CRUDModal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body CRUDModal-body">
+                    ...
+                </div>
+                <div class="modal-footer CRUDModal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CRUDXlModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title CRUDMXlModal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body CRUDXlModal-body">
+                    ...
+                </div>
+                <div class="modal-footer CRUDXlModal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('body').on('click', '.popupClose', function () {
+            ClosePopupModal();
+        });
+    </script>
+
+    <script>
+        //FILE UPLOAD COUNTER
+        $('body').on('change', '.custom-file-input', function () {
+            var fileName = $(this).val().split('\\').pop();
+            if (fileName != "") {
+                $(this).next('.custom-file-label').html(fileName);
+            }
+
+        });
+
+        //MENU ACTIVATOR!
+        $('.menu-item').on('click', function () {
+            var c_id = $(this).closest('.menu-item').attr('id');
+            $.cookie("MMom", c_id, { expires: 2 / 24 });
+        });
+
+        $('.menu-text').on('click', function () {
+            var c_id = $(this).closest('.menu-text').attr('id');
+            $.cookie("MChild", c_id, { expires: 2 / 24 });
+        });
+
+        $(function () {
+            var momVal = $.cookie("MMom");
+            var childVal = $.cookie("MChild");
+            if (typeof (momVal) != "undefined") {
+                $("#" + momVal).addClass("menu-item-open");
+            }
+            if (typeof (childVal) != "undefined") {
+                $("#" + childVal).addClass("text-primary");
+            }
+
+        });
+
+        //TEXT EDITOR
+        var KTSummernoteDemo = function () {
+            // Private functions
+            var demos = function () {
+                $('.summernote').summernote({
+                    height: 150
+                });
+            }
+
+            return {
+                // public functions
+                init: function () {
+                    demos();
+                }
+            };
+        }();
+
+    </script>
+
+    @RenderSection("Scripts", required: false)
+
+
+</body>
+</html>
+

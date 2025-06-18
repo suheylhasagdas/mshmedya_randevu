@@ -1,0 +1,41 @@
+﻿@inject Core.Helpers.Media.Abstract.IButtonService _rbb
+@model Model.Dtos.StaffServices.StaffServicesDto
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Yeni Personel Hizmeti Seç</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <form id="InsertStaffServicesForm">
+        <div class="col-12 mb-3">
+            <label>Personel</label>
+            <div>
+                @Html.DropDownListFor(x => x.StaffId, new SelectList(Model.StaffList, "Id", "FullName"), new { @class = "form-control form-control-sm" })
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <label>Hizmet</label>
+            <div>
+                @Html.DropDownListFor(x => x.ServiceId, new SelectList(Model.ServicesList, "Id", "Name"), new { @class = "form-control form-control-sm" })
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    @_rbb.PageCreate(buttonId: "InsertStaffServices")
+</div>
+
+<script>
+
+    $(function () {
+        KTSummernoteDemo.init();
+
+        $("#StaffId, #ServiceId").select2({
+            placeholder: "Seçiniz",
+            allowClear: true
+        });
+    });
+
+</script>

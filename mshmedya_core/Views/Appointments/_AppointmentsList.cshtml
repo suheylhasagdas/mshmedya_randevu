@@ -1,0 +1,87 @@
+﻿@using Model.Dtos.Appointments
+@inject Core.Helpers.Media.Abstract.IRowButtonService _rb
+@inject Core.Helpers.Media.Abstract.IButtonService _rbb
+@model List<AppointmentsDto>
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Randevu Kayıtları
+                <span class="d-block text-muted pt-2 font-size-sm">Tüm Randevular Listelendi</span>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <!--begin::Button-->
+            @_rbb.PageNew("_InsertAppointments")
+            <!--end::Button-->
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin: Datatable-->
+        <table id="AppointmentsTable"
+               data-toggle="table"
+               data-locale="tr-TR"
+               data-search="true"
+               class="table-hover">
+            <thead style="text-align:center;">
+                <tr>
+                    <th data-width="90px"><span>İşlemler</span></th>
+                    <th><span>Müşteri</span></th>
+                    <th><span>Personel</span></th>
+                    <th><span>Tarih</span></th>
+                    <th><span>Seans</span></th>
+                    <th><span>Hizmet</span></th>
+                    <th><span>Eklenme Tarihi</span></th>
+                    <th><span>Randevu Durumu</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+
+                    foreach (var item in Model.Select((value, i) => new { i, value }))
+                    {
+                <tr data-id="@item.value.Id">
+                    <td>
+                        @_rb.RowUpdate(id: "_UpdateAppointments")
+                        @if (item.value.IsActive)
+                            @_rb.RowDelete(id: "_DeleteAppointments")
+                            else
+                                @_rb.RowUndo(id: "_UndoDeleteAppointments")
+                    </td>
+                    <td><span style="text-align:center;">@item.value.CustomerName</span></td>
+                    <td><span style="text-align:center;">@item.value.Staff.FullName</span></td>
+                    <td><span style="text-align:center;">@item.value.StartDateTime.ToString("dd MMM dddd")</span></td>
+                    <td><span style="text-align:center;">@item.value.StartDateTime.ToString("HH:mm") - @item.value.EndDateTime.ToString("HH:mm")</span></td>
+                    <td><span style="text-align:center;">@item.value.ServiceName</span></td>
+                    <td><span style="text-align:center;">@item.value.CreateDate.ToString("dd MMM yyyy")</span></td>
+                    <td>
+                        @if (item.value.IsActive)
+                        {
+                            <span style="text-align:center;"><span class="label font-weight-bold label-lg label-light-success label-inline">Aktif Randevu</span></span>
+                        }
+                        else
+                        {
+                            <span style="text-align:center;"><span class="label font-weight-bold label-lg label-light-danger label-inline">İptal Edildi</span></span>
+                        }
+
+                    </td>
+
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!--end: Datatable-->
+    </div>
+</div>
+
+<script>
+    var $table = $('#AppointmentsTable')
+
+    $(function () {
+        $table.bootstrapTable();
+
+    })
+</script>
+

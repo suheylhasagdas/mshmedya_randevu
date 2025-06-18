@@ -1,0 +1,136 @@
+﻿@inject Core.Helpers.Abstract.IAppUserService _user
+
+<style>
+    .myTextOverFlow {
+        white-space: nowrap;
+        width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 10px !important;
+    }
+
+    .myTextOverFlowEmail {
+        white-space: nowrap;
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 10px !important;
+    }
+</style>
+<div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
+    <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5" kt-hidden-height="40" style="">
+        <h3 class="font-weight-bold m-0">
+            Kullanıcı Ayarları
+            @*<small class="text-muted font-size-sm ml-2">12 messages</small>*@
+        </h3>
+        <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+            <i class="ki ki-close icon-xs text-muted"></i>
+        </a>
+    </div>
+    <div class="d-flex align-items-center mt-5">
+        <div class="symbol symbol-100 mr-5">
+            <div class="symbol-label" style="background-image: url('@_user.UserDetail.Photo')"></div>
+            <i class="symbol-badge bg-success"></i>
+        </div>
+        <div class="d-flex flex-column">
+            <a class="font-weight-bold font-size-h7 text-dark-75 text-hover-primary">@_user.UserDetail.Name @_user.UserDetail.Surname</a>
+            @*<div class="text-muted mt-1 text-capitalize myTextOverFlow">@_user.EmployeeDetail.ParentOrganizationName</div>
+                <div class="text-muted mt-1 text-capitalize myTextOverFlow">@_user.EmployeeDetail.OrganizationName</div>
+                <div class="text-muted mt-1 text-capitalize myTextOverFlow">@_user.EmployeeDetail.OrganizationPosition</div>*@
+            <div class="navi mt-2">
+                <a href="#" class="navi-item">
+                    <span class="navi-link p-0 pb-2">
+                        <span class="navi-icon mr-1">
+                            <span class="svg-icon svg-icon-lg svg-icon-primary">
+                                <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Communication/Mail-notification.svg-->
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                        <path d="M21,12.0829584 C20.6747915,12.0283988 20.3407122,12 20,12 C16.6862915,12 14,14.6862915 14,18 C14,18.3407122 14.0283988,18.6747915 14.0829584,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12.0829584 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z" fill="#000000"></path>
+                                        <circle fill="#000000" opacity="0.3" cx="19.5" cy="17.5" r="2.5"></circle>
+                                    </g>
+                                </svg>
+                                <!--end::Svg Icon-->
+                            </span>
+                        </span>
+                        <span class="navi-text text-muted text-hover-primary myTextOverFlowEmail">@_user.UserDetail.Email</span>
+                    </span>
+                </a>
+                <a href="/Login/LogOut" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Çıkış Yap</a>
+            </div>
+        </div>
+    </div>
+    <div class="separator separator-dashed mt-8 mb-5"></div>
+
+    @*Covid İşlemleri*@
+    <div class="navi navi-spacer-x-0 p-0">
+        <!--begin::Item-->
+        <a class="navi-item" style="cursor: pointer;">
+            <div class="navi-link">
+                <div class="symbol symbol-40 bg-light mr-3">
+                    <div class="symbol-label">
+                        <span class="svg-icon svg-icon-md svg-icon-primary">
+                            <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Files/Selected-file.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                    <path d="M6,2 L18,2 C19.6568542,2 21,3.34314575 21,5 L21,19 C21,20.6568542 19.6568542,22 18,22 L6,22 C4.34314575,22 3,20.6568542 3,19 L3,5 C3,3.34314575 4.34314575,2 6,2 Z M12,11 C13.1045695,11 14,10.1045695 14,9 C14,7.8954305 13.1045695,7 12,7 C10.8954305,7 10,7.8954305 10,9 C10,10.1045695 10.8954305,11 12,11 Z M7.00036205,16.4995035 C6.98863236,16.6619875 7.26484009,17 7.4041679,17 C11.463736,17 14.5228466,17 16.5815,17 C16.9988413,17 17.0053266,16.6221713 16.9988413,16.5 C16.8360465,13.4332455 14.6506758,12 11.9907452,12 C9.36772908,12 7.21569918,13.5165724 7.00036205,16.4995035 Z" fill="#000000"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                    </div>
+                </div>
+                <div class="navi-text">
+                    <div class="font-weight-bold">Profilim</div>
+                    <div class="text-muted">Profil bilgilerini güncelle</div>
+                </div>
+            </div>
+        </a>
+        <a class="navi-item" style="cursor: pointer;">
+            <div class="navi-link">
+                <div class="symbol symbol-40 bg-light mr-3">
+                    <div class="symbol-label">
+                        <span class="svg-icon svg-icon-md svg-icon-warning">
+                            <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Files/Selected-file.svg-->
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                    <path d="M5,8.6862915 L5,5 L8.6862915,5 L11.5857864,2.10050506 L14.4852814,5 L19,5 L19,9.51471863 L21.4852814,12 L19,14.4852814 L19,19 L14.4852814,19 L11.5857864,21.8994949 L8.6862915,19 L5,19 L5,15.3137085 L1.6862915,12 L5,8.6862915 Z M12,15 C13.6568542,15 15,13.6568542 15,12 C15,10.3431458 13.6568542,9 12,9 C10.3431458,9 9,10.3431458 9,12 C9,13.6568542 10.3431458,15 12,15 Z" fill="#000000"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                    </div>
+                </div>
+                <div class="navi-text">
+                    <div class="font-weight-bold">Ayarlar</div>
+                    <div class="text-muted">Web Sayfası Ayarları</div>
+                </div>
+            </div>
+        </a>
+        <!--end:Item-->
+    </div>
+
+    <!--<br />
+    Rol İşlemlerini ekrana gösterme
+    <h5 class="mb-5">Rollerim</h5>-->
+    @*SüperAdmin için*@
+    <!--<div class="d-flex align-items-center bg-light-success rounded p-5 gutter-b">
+        <div class="d-flex flex-column flex-grow-1 mr-2">
+            <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1"></a>
+        </div>
+    </div>-->
+    @*Admin rolü için*@
+    <!--<div class="d-flex align-items-center bg-light-warning rounded p-5 gutter-b">
+        <div class="d-flex flex-column flex-grow-1 mr-2">
+            <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1"></a>
+        </div>
+    </div>-->
+    @*Diğer roller için*@
+    <!--<div class="d-flex align-items-center bg-light-info rounded p-5">
+        <div class="d-flex flex-column flex-grow-1 mr-2">
+            <a href="#" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1"></a>
+        </div>
+    </div>-->
+</div>

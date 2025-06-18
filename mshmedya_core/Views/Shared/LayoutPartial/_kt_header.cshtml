@@ -1,0 +1,47 @@
+﻿
+<div id="kt_header" class="header header-fixed">
+    <!--begin::Container-->
+    <div class="container-fluid d-flex align-items-stretch justify-content-between">
+
+        <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+
+            <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_Logo.cshtml")
+            </div>
+        </div>
+        <div class="topbar">
+            @*
+        @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_quick_search.cshtml")
+        @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_quick_actions.cshtml")
+
+            @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_quick_notifications.cshtml")
+            @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_quick_cart.cshtml")
+            @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_quick_panel.cshtml")
+            @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_quick_chat.cshtml")
+            @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_quick_Language.cshtml")
+            *@
+           
+        </div>
+    </div>
+</div>
+
+<div id="kt_header" class="header header-fixed">
+    <!--begin::Container-->
+    <div class="container-fluid d-flex align-items-stretch justify-content-between">
+        <!--begin::Header Menu Wrapper-->
+        <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+
+        </div>
+        <!--end::Header Menu Wrapper-->
+        <!--begin::Topbar-->
+        <div class="topbar">
+            <!--begin::Search-->
+            @await Html.PartialAsync("~/Views/Shared/LayoutPartial/_kt_quick_user.cshtml")
+
+            
+            <!--end::User-->
+        </div>
+        <!--end::Topbar-->
+    </div>
+    <!--end::Container-->
+</div>

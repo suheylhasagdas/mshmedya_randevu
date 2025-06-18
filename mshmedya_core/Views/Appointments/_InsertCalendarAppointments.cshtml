@@ -1,0 +1,189 @@
+﻿@inject Core.Helpers.Media.Abstract.IButtonService _rbb
+@model Model.Dtos.Appointments.AppointmentsDto
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Randevu Oluştur</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki ki-close"></i>
+    </button>
+</div>
+<div class="modal-body">
+    <form id="UpdateAppointmentsForm">
+        <div class="row">
+            <div class="col-6 mb-5">
+                <div class="h3 ml-4 text-right">
+                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                        <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Layout/Layout-top-panel-6.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <title>Stockholm-icons / Layout / Layout-top-panel-6</title>
+                            <desc>Created with Sketch.</desc>
+                            <defs />
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <rect fill="#000000" x="2" y="5" width="19" height="4" rx="1" />
+                                <rect fill="#000000" opacity="0.3" x="2" y="11" width="19" height="10" rx="1" />
+                            </g>
+                        </svg><!--end::Svg Icon-->
+                    </span>
+                    @Convert.ToDateTime(Model.AppointmentDate).ToString("dd MMMM yyyy dddd")
+                </div>
+            </div>
+            <div class="col-6 mb-3">
+                <div class="h3 mr-4">
+                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                        <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Alarm-clock.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <title>Stockholm-icons / Home / Alarm-clock</title>
+                            <desc>Created with Sketch.</desc>
+                            <defs />
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path d="M7.14319965,19.3575259 C7.67122143,19.7615175 8.25104409,20.1012165 8.87097532,20.3649307 L7.89205065,22.0604779 C7.61590828,22.5387706 7.00431787,22.7026457 6.52602525,22.4265033 C6.04773263,22.150361 5.88385747,21.5387706 6.15999985,21.0604779 L7.14319965,19.3575259 Z M15.1367085,20.3616573 C15.756345,20.0972995 16.3358198,19.7569961 16.8634386,19.3524415 L17.8320512,21.0301278 C18.1081936,21.5084204 17.9443184,22.1200108 17.4660258,22.3961532 C16.9877332,22.6722956 16.3761428,22.5084204 16.1000004,22.0301278 L15.1367085,20.3616573 Z" fill="#000000" />
+                                <path d="M12,21 C7.581722,21 4,17.418278 4,13 C4,8.581722 7.581722,5 12,5 C16.418278,5 20,8.581722 20,13 C20,17.418278 16.418278,21 12,21 Z M19.068812,3.25407593 L20.8181344,5.00339833 C21.4039208,5.58918477 21.4039208,6.53893224 20.8181344,7.12471868 C20.2323479,7.71050512 19.2826005,7.71050512 18.696814,7.12471868 L16.9474916,5.37539627 C16.3617052,4.78960984 16.3617052,3.83986237 16.9474916,3.25407593 C17.5332781,2.66828949 18.4830255,2.66828949 19.068812,3.25407593 Z M5.29862906,2.88207799 C5.8844155,2.29629155 6.83416297,2.29629155 7.41994941,2.88207799 C8.00573585,3.46786443 8.00573585,4.4176119 7.41994941,5.00339833 L5.29862906,7.12471868 C4.71284263,7.71050512 3.76309516,7.71050512 3.17730872,7.12471868 C2.59152228,6.53893224 2.59152228,5.58918477 3.17730872,5.00339833 L5.29862906,2.88207799 Z" fill="#000000" opacity="0.3" />
+                                <path d="M11.9630156,7.5 L12.0475062,7.5 C12.3043819,7.5 12.5194647,7.69464724 12.5450248,7.95024814 L13,12.5 L16.2480695,14.3560397 C16.403857,14.4450611 16.5,14.6107328 16.5,14.7901613 L16.5,15 C16.5,15.2109164 16.3290185,15.3818979 16.1181021,15.3818979 C16.0841582,15.3818979 16.0503659,15.3773725 16.0176181,15.3684413 L11.3986612,14.1087258 C11.1672824,14.0456225 11.0132986,13.8271186 11.0316926,13.5879956 L11.4644883,7.96165175 C11.4845267,7.70115317 11.7017474,7.5 11.9630156,7.5 Z" fill="#000000" />
+                            </g>
+                        </svg><!--end::Svg Icon-->
+                    </span>
+                    @Model.StartTime - @Model.EndTime
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <label>Müşteri</label>
+            <div>
+                @Html.DropDownListFor(x => x.CustomerId, new SelectList(Model.CustomersList, "Id", "FullNamePhone"), new { @class = "form-control form-control-sm" })
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <label>Personel</label>
+            <div>
+                @Html.DropDownListFor(x => x.StaffId, new SelectList(Model.StaffList, "Id", "FullName"), new { @class = "form-control form-control-sm" })
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <label>Hizmet</label>
+            <div>
+                @Html.DropDownListFor(x => x.ServiceId, new SelectList(Model.ServicesList, "Id", "Name"), new { @class = "form-control form-control-sm" })
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    @_rbb.PageCreate(buttonId: "InsertCalendarAppointments", buttonText: "Randevuyu Oluştur")
+</div>
+
+
+<script>
+
+        var picker;
+        var selectedCalendarSessionId = "@Model.SessionId";
+        var selectedCalendarDate = "@Convert.ToDateTime(Model.AppointmentDate).ToString("yyyy.MM.dd")";
+        $(function () {
+
+            $('#CustomerId').val("").trigger("change");
+            KTSummernoteDemo.init();
+            $("#StaffId, #ServiceId, #SessionId, #CustomerId").select2({
+                placeholder: "Seçiniz",
+                allowClear: true
+            });
+
+            $('#StaffId').trigger("change");
+
+        });
+
+        $('#StaffId').change(function () {
+            $('#ServiceId').empty().trigger("change");
+            selectedSessionId = 0;
+            selectedDate = null;
+            var StaffId = $('#StaffId').val();
+            $('#staffSessions').html('');
+            if (!msh.Inue(StaffId)) {
+                var model =
+                {
+                    Id: parseInt(StaffId)
+                }
+
+                var fncSuccess = function (result) {
+                    var $select = $('#ServiceId');
+                    $select.empty();
+
+                    result.forEach(function (item) {
+                        $select.append(new Option(item.serviceName + " (" + item.serviceDuration + " Dk)", item.serviceId));
+                    });
+                    $('#ServiceId').val('' + @Model.ServiceId + '').trigger("change");
+                };
+                var fncError = function (jqXHR, textStatus, errorThrown) {
+                    ParseErrorResult(jqXHR, textStatus, errorThrown);
+                };
+
+                msh.AjaxPost(msh.GetUrl("GetStaffServicesByStaffId", "StaffServices"), JSON.stringify(model), fncSuccess, fncError);
+
+                return false;
+            }
+        });
+
+        function SessionClick(el) {
+            var element = $(el);
+            $('.btn-sessions').removeClass("active");
+            element.addClass("active");
+            selectedSessionId = element.data("sessionid");
+        }
+    $('#InsertCalendarAppointments').click(function () {
+        debugger;
+
+        var formData = new FormData();
+
+        var CustomerId = $('#CustomerId').val();
+        var StaffId = $('#StaffId').val();
+        var ServiceId = $('#ServiceId').val();
+        var SessionId = selectedCalendarSessionId;
+        var AppointmentDate = selectedCalendarDate;
+
+        if (msh.Inue(StaffId)) {
+            msh.ToastWarning("Personel Alanı Dolu Olmalıdır!");
+            return false;
+        }
+        if (msh.Inue(ServiceId)) {
+            msh.ToastWarning("Hizmet Alanı Dolu Olmalıdır!");
+            return false;
+        }
+        if (msh.Inue(CustomerId)) {
+            msh.ToastWarning("Müşteri Alanı Dolu Olmalıdır!");
+            return false;
+        }
+        if (msh.Inue(CustomerId)) {
+            msh.ToastWarning("Müşteri Alanı Dolu Olmalıdır!");
+            return false;
+        }
+        if (msh.Inue(AppointmentDate)) {
+            msh.ToastWarning("Randevu Tarihi Alanı Dolu Olmalıdır!");
+            return false;
+        }
+        if (msh.Inue(SessionId)) {
+            msh.ToastWarning("Seans Alanı Dolu Olmalıdır!");
+            return false;
+        }
+
+        formData.append("StaffId", StaffId);
+        formData.append("ServiceId", ServiceId);
+        formData.append("CustomerId", CustomerId);
+        formData.append("AppointmentDate", AppointmentDate);
+        formData.append("SessionId", SessionId);
+
+
+        var fncSuccess = function (result) {
+            if (typeof result == 'object')
+                SwalToastWarning(result.responseText);
+            else {
+                CloseModal('ModalSizeLg');
+                msh.ToastSuccess('Randevu Başarıyla Oluşturuldu!');
+                GetMshCalendar();
+            }
+        };
+        var fncError = function (jqXHR, textStatus, errorThrown) {
+            ParseErrorResult(jqXHR, textStatus, errorThrown);
+        };
+        debugger;
+        msh.AjaxPostFormData(msh.GetUrl("InsertAppointments", "Appointments"), formData, fncSuccess, fncError);
+
+        return false;
+    });
+</script>

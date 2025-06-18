@@ -1,0 +1,30 @@
+﻿@model List<string>
+
+<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader" kt-hidden-height="54" style="">
+    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center" id="MainButton">
+
+        </div>
+        <div class="d-flex align-items-center flex-wrap mr-1">
+
+            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5" id="MainTitle">
+                @Model[0]
+            </h5>
+
+            <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+            <span class="text-muted font-weight-bold mr-4" id="SubTitle">@Model[1]</span>
+
+        </div>
+
+        
+
+    </div>
+</div>
+
+
+<script>
+    var body = document.body;
+    body.classList.add("subheader-enabled");
+    body.classList.add("subheader-fixed");
+
+</script>
