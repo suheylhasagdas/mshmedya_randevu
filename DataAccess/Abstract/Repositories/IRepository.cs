@@ -12,15 +12,11 @@ namespace DataAccess.Abstract.Repositories
         TEntity Find(Expression<Func<TEntity, bool>> filter);
         TEntity Last(Expression<Func<TEntity, bool>> filter);
         TEntity Max();
-
-        IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null);
+        IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null);
         bool Any(Expression<Func<TEntity, bool>> filter = null);
         int Count(Expression<Func<TEntity, bool>> filter = null);
-
         IQueryable<TResult> Select<TResult>(Expression<Func<TEntity, TResult>> selector);
         IQueryable<TResult> Select<TResult>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TResult>> selector);
-
         IList<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null);
         TEntity Insert(TEntity entity);
         TEntity Update(TEntity entity);

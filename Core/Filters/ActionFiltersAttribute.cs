@@ -9,7 +9,6 @@ namespace Core.Filters
     public class ActionFiltersAttribute : ActionFilterAttribute
     {
         private readonly IAppUserService _userService;
-
         public ActionFiltersAttribute(IAppUserService userService, IHttpContextAccessor context)
         {
             _userService = userService;
@@ -17,7 +16,6 @@ namespace Core.Filters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-
             if (!_userService.IsAuthanticated)
             {
                 if (context.HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
@@ -33,9 +31,6 @@ namespace Core.Filters
                     return;
                 }
             }
-
-
-
             base.OnActionExecuting(context);
         }
     }

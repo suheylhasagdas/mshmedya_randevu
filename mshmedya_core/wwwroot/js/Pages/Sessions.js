@@ -57,12 +57,6 @@ $('body').on('click', '#InsertSessions', function () {
         return false;
     }
 
-    if (msh.Inue(Description)) {
-        msh.ToastWarning("Açıklama Alanı Dolu Olmalıdır!");
-        msh.focusTheEmptyInput($('#Description'));
-        return false;
-    }
-
     formData.append("StartTime", StartTime);
     formData.append("Description", Description);
     formData.append("EndTime", EndTime);
@@ -197,12 +191,6 @@ $('body').on('click', '#UpdateSessions', function () {
     if (msh.Inue(EndTime)) {
         msh.ToastWarning("Bitiş Alanı Dolu Olmalıdır!");
         msh.focusTheEmptyInput($('#EndTime'));
-        return false;
-    }
-
-    if (msh.Inue(Description)) {
-        msh.ToastWarning("Açıklama Alanı Dolu Olmalıdır!");
-        msh.focusTheEmptyInput($('#Description'));
         return false;
     }
 

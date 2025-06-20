@@ -8,17 +8,23 @@
 </div>
 <div class="modal-body">
     <form id="UpdateSessionsForm">
-        <div class="col-12 mb-3">
-            <label>Başlangıç</label>
-            @Html.TextBoxFor(x => x.StartTime, new { @class = "form-control form-control-sm ", type = "text" })
-        </div>
-        <div class="col-12 mb-3">
-            <label>Bitiş</label>
-            @Html.TextBoxFor(x => x.EndTime, new { @class = "form-control form-control-sm ", type = "text" })
-        </div>
-        <div class="col-12 mb-3">
-            <label>Açıklama</label>
-            @Html.TextBoxFor(x => x.Description, new { @class = "form-control form-control-sm ", type = "text" })
+        <div class="row">
+            <div class="offset-1 col-5 mb-3">
+                <label>Başlangıç</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.StartTime, new { @class = "form-control form-control-sm time-input text-center", type = "text" })
+                </div>
+            </div>
+            <div class="col-5 mb-3">
+                <label>Bitiş</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.EndTime, new { @class = "form-control form-control-sm time-input text-center", type = "text" })
+                </div>
+            </div>
+            <div class="offset-1 col-11 mb-3">
+                <label>Açıklama</label>
+                @Html.TextBoxFor(x => x.Description, new { @class = "form-control form-control-sm ", type = "text" })
+            </div>
         </div>
 
     </form>
@@ -32,6 +38,7 @@
 
     $(function () {
         KTSummernoteDemo.init();
+        MshTimePicker();
     });
 
 </script>

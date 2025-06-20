@@ -145,7 +145,6 @@
                         $select.append(new Option(item.serviceName + " (" + item.serviceDuration + " Dk)", item.serviceId));
                     });
                     $('#ServiceId').val('' + @Model.ServiceId + '').trigger("change");
-                    debugger;
                     picker.setDate("@Model.StartDateTime.ToString("dd-MM-yyyy")", true);
                 };
                 var fncError = function (jqXHR, textStatus, errorThrown) {
